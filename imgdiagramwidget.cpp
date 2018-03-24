@@ -21,7 +21,10 @@ void ImgDiagramWidget::paintEvent(QPaintEvent *event)
     painter.setPen(QPen(Qt::black, 1, Qt::SolidLine, Qt::FlatCap));
     painter.drawEllipse(QPoint(x01, y01), R, R);
     painter.drawEllipse(QPoint(x02, y02), R, R);
-    painter.drawEllipse(QPoint(x03, y03), R, R);
+    painter.drawEllipse(QPoint(x03, y03), R, R);    
+    painter.drawText(QPoint(50, 350), "B");
+    painter.drawText(QPoint(200, 30), "A");
+    painter.drawText(QPoint(350, 350), "C");
 }
 
 void ImgDiagramWidget::GeneratePolygons()

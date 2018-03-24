@@ -11,6 +11,7 @@
 #include <QVector>
 #include <QPainter>
 #include <QMouseEvent>
+#include <QTextItem>
 
 class ImgDiagramWidget : public QWidget
 {
