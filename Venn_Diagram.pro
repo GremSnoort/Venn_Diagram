@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -27,7 +27,14 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         imgdiagramwidget.cpp \
+    database.cpp
 
 HEADERS += \
         mainwindow.h \
         imgdiagramwidget.h \
+    database.h
+
+unix|win32: LIBS += -L$$PWD/'../../../../../Program Files/MySQL/MySQL Server 5.7/lib/' -llibmysql
+
+INCLUDEPATH += $$PWD/'../../../../../Program Files/MySQL/MySQL Server 5.7/include'
+DEPENDPATH += $$PWD/'../../../../../Program Files/MySQL/MySQL Server 5.7/include'

@@ -22,16 +22,16 @@ void ImgDiagramWidget::paintEvent(QPaintEvent *event)
     painter.drawEllipse(QPoint(x01, y01), R, R);
     painter.drawEllipse(QPoint(x02, y02), R, R);
     painter.drawEllipse(QPoint(x03, y03), R, R);    
-    painter.drawText(QPoint(50, 350), "B");
-    painter.drawText(QPoint(200, 30), "A");
-    painter.drawText(QPoint(350, 350), "C");
+    painter.drawText(QPoint(x01-R, y01+R), "B");
+    painter.drawText(QPoint(x02, y02-R-10), "A");
+    painter.drawText(QPoint(x03+R, y03+R), "C");
 }
 
 void ImgDiagramWidget::GeneratePolygons()
 {
-    for(int x=50; x<350; x++)
+    for(int x=33; x<363; x++)
     {
-        for(int y=50; y<350; y++)
+        for(int y=33; y<363; y++)
         {
             bool A = checkA(x, y);
             bool B = checkB(x, y);
