@@ -7,6 +7,7 @@
 #include <QModelIndex>
 
 #include "imgdiagramwidget.h"
+#include "usersession_exprtoimgwidget.h"
 #include "database.h"
 
 class MainWindow : public QWidget
@@ -18,6 +19,7 @@ public:
     ~MainWindow();
 
     ImgDiagramWidget IDW;
+    UserSession_ExprToImgWidget US_ETIW;
 
     void CreateLayout();
 

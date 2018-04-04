@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QWidget>
-#include <QScopedPointer>
 #include <QVBoxLayout>
 #include <QVector>
 #include <QPointF>

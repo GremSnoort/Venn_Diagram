@@ -4,15 +4,16 @@
 #include <QObject>
 #include <QWidget>
 #include <QCoreApplication>
-#include <QSql>
-#include <QSqlQuery>
-#include <QSqlError>
-#include <QSqlDatabase>
+#include <QtSql/QSql>
+#include <QtSql/QSqlQuery>
+#include <QtSql/QSqlError>
+#include <QtSql/QSqlDatabase>
 #include <QFile>
 #include <QDate>
 #include <QDebug>
 #include <QTextStream>
 #include <QMessageBox>
+#include <QStringList>
 
 #define DATABASE_HOSTNAME   "DESKTOP-92FT46K"
 #define DATABASE_NAME       "C:/Users/Eva/Documents/Qt2018/Venn_Diagram/VennTasks.db"
@@ -35,9 +36,13 @@ public:
 
     QSqlDatabase db;
 
+    QStringList GetNewRand_ExprToImg();
+
 private:
 
     void closeDataBase();
+
+    int GetRand(int size);
 
 public slots:
 

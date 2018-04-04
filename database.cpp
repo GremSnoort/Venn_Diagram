@@ -10,6 +10,31 @@ DataBase::~DataBase()
 
 }
 
+int DataBase::GetRand(int size)
+{
+    return rand() % 2;
+}
+
+QStringList DataBase::GetNewRand_ExprToImg()
+{
+    QStringList List;
+
+    QSqlQuery query = QSqlQuery(db);
+    bool ok = query.exec("SELECT COUNT(1) FROM `" TABLE "`;");
+    ok = query.exec("select `Expr`, `Key` from `" TABLE "` where `ID` = " + QString(GetRand(0)) + ";");
+    qDebug()<<query.lastError().text();
+
+    while (query.next())
+    {
+        QString expr = query.value(0).toString();
+        QString key = query.value(1).toString();
+
+        List<<expr<<key;
+    }
+
+    return List;
+}
+
 bool DataBase::openDataBase()
 {
     db = QSqlDatabase::addDatabase("QSQLITE");
