@@ -14,6 +14,9 @@
 #include <QTextStream>
 #include <QMessageBox>
 #include <QStringList>
+#include <string>
+
+#include "datatypes.h"
 
 #define DATABASE_HOSTNAME   "DESKTOP-92FT46K"
 #define DATABASE_NAME       "C:/Users/Eva/Documents/Qt2018/Venn_Diagram/VennTasks.db"
@@ -36,13 +39,15 @@ public:
 
     QSqlDatabase db;
 
-    QStringList GetNewRand_ExprToImg();
-
-private:
+    data_ExprToImg GetNewRand_ExprToImg();
 
     void closeDataBase();
 
-    int GetRand(int size);
+    QString GetRand();
+
+private:
+
+
 
 public slots:
 

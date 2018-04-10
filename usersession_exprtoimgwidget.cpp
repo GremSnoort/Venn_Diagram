@@ -2,13 +2,19 @@
 
 UserSession_ExprToImgWidget::UserSession_ExprToImgWidget(QWidget *parent)
     : QWidget(parent)
-    , ExprLabel(new QLabel("", this))
+
     , PrevButton(new QPushButton("Previous", this))
-    , NextButton(new QPushButton("Next", this))
     , CheckAnswerButton(new QPushButton("Check Answer", this))
+    , NextButton(new QPushButton("Next", this))
+    , ExprLabel(new QLabel("", this))
 {
     setFixedSize(400, 100);
     CreateLayout();
+}
+
+void UserSession_ExprToImgWidget::SetExpr(QString expr)
+{
+    ExprLabel->setText(expr);
 }
 
 void UserSession_ExprToImgWidget::CreateLayout()

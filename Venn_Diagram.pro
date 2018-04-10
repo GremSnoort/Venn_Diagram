@@ -28,13 +28,16 @@ SOURCES += \
         mainwindow.cpp \
         imgdiagramwidget.cpp \
     database.cpp \
-    usersession_exprtoimgwidget.cpp
+    usersession_exprtoimgwidget.cpp \
+    usersession.cpp
 
 HEADERS += \
         mainwindow.h \
         imgdiagramwidget.h \
     database.h \
-    usersession_exprtoimgwidget.h
+    usersession_exprtoimgwidget.h \
+    usersession.h \
+    datatypes.h
 
 unix|win32: LIBS += -L$$PWD/'../../../../../Program Files/MySQL/MySQL Server 5.7/lib/' -llibmysql
 

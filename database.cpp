@@ -2,7 +2,8 @@
 
 DataBase::DataBase(QObject *parent) : QObject(parent)
 {
-
+    bool ok = openDataBase();
+    qDebug()<<"database OPENED: "<<ok<<endl;
 }
 
 DataBase::~DataBase()
@@ -10,18 +11,20 @@ DataBase::~DataBase()
 
 }
 
-int DataBase::GetRand(int size)
+QString DataBase::GetRand()
 {
-    return rand() % 2;
+    QString str = QString::number(rand() % 2);
+
+    return str;
 }
 
-QStringList DataBase::GetNewRand_ExprToImg()
+data_ExprToImg DataBase::GetNewRand_ExprToImg()
 {
-    QStringList List;
+    data_ExprToImg List;
 
     QSqlQuery query = QSqlQuery(db);
-    bool ok = query.exec("SELECT COUNT(1) FROM `" TABLE "`;");
-    ok = query.exec("select `Expr`, `Key` from `" TABLE "` where `ID` = " + QString(GetRand(0)) + ";");
+    bool ok = query.exec("SELECT COUNT(1) FROM `ExprToImage`;");
+    ok = query.exec("select Expr, Key from ExprToImage where ID = " + GetRand() + ";");
     qDebug()<<query.lastError().text();
 
     while (query.next())
@@ -29,7 +32,9 @@ QStringList DataBase::GetNewRand_ExprToImg()
         QString expr = query.value(0).toString();
         QString key = query.value(1).toString();
 
-        List<<expr<<key;
+        List.expr = expr;
+        List.key = key;
+        qDebug()<<List.expr<<"  "<<List.key<<endl;
     }
 
     return List;

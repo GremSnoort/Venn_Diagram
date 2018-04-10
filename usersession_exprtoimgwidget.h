@@ -18,16 +18,17 @@ class UserSession_ExprToImgWidget : public QWidget
 public:
     explicit UserSession_ExprToImgWidget(QWidget *parent = nullptr);
 
+    void SetExpr(QString expr);
+
+    QScopedPointer<QPushButton> PrevButton;
+    QScopedPointer<QPushButton> CheckAnswerButton;
+    QScopedPointer<QPushButton> NextButton;    
+
 private:
 
     void CreateLayout();
 
-    QScopedPointer<QLabel> ExprLabel;
-
-    QScopedPointer<QPushButton> PrevButton;
-    QScopedPointer<QPushButton> NextButton;
-
-    QScopedPointer<QPushButton> CheckAnswerButton;
+    QScopedPointer<QLabel> ExprLabel;    
 
 signals:
 

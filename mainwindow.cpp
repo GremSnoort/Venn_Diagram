@@ -1,13 +1,18 @@
 #include "mainwindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QWidget(parent)
+    : QMainWindow(parent)
+
+    , user_session(new UserSession(this))
 {
     setWindowIcon(QIcon(QCoreApplication::applicationDirPath()+"/pic/icon.png"));
-    CreateLayout();
 
-    db = new DataBase();
-    bool ok = db->openDataBase();
+    CreateActions();
+    CreateMenus();
+    CreateConnections();
+    CreateDocks();
+
+    //CreateLayout();
 
     /*model = new QSqlTableModel(0, db->db);
     model->setTable(TABLE);
@@ -15,9 +20,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     QTextStream out(stdout);
     out << model->lastError().driverText()<<endl;*/
-
-
-
 }
 
 MainWindow::~MainWindow()
@@ -25,16 +27,31 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::CreateLayout()
+void MainWindow::CreateDocks()
 {
-    QVBoxLayout* layout = new QVBoxLayout(this);
-    QWidget* spacer = new QWidget;
-    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    QMenu* view = menuBar()->addMenu(tr("&View"));
 
-    layout->addWidget(&US_ETIW);
-    layout->addWidget(&IDW);
+    QDockWidget* userDock = new QDockWidget(tr("User Session"), this);
+    userDock->setObjectName("UserSessionDock");
+    userDock->setFeatures(QDockWidget::DockWidgetClosable | QDockWidget::DockWidgetMovable);
+    userDock->setWidget(user_session.data());
+    addDockWidget(Qt::LeftDockWidgetArea, userDock);
+    view->addAction(userDock->toggleViewAction());
+    userDock->close();
+}
 
-    layout->addWidget(spacer);
+void MainWindow::CreateMenus()
+{
+    QMenu* session = menuBar()->addMenu(tr("Session"));
+    session->addAction(start_usersession.data());
+}
 
-    setLayout(layout);
+void MainWindow::CreateActions()
+{
+    start_usersession.reset(new QAction(tr("New user session"), this));
+}
+
+void MainWindow::CreateConnections()
+{
+    QObject::connect(start_usersession.data(), &QAction::triggered, user_session.data(), &UserSession::StartNewSession);
 }

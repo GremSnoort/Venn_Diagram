@@ -3,14 +3,15 @@
 
 #include <QCoreApplication>
 #include <QIcon>
-#include <QtSql/QSqlTableModel>
-#include <QModelIndex>
+#include <QScopedPointer>
+#include <QAction>
+#include <QMenu>
+#include <QMenuBar>
+#include <QDockWidget>
 
-#include "imgdiagramwidget.h"
-#include "usersession_exprtoimgwidget.h"
-#include "database.h"
+#include "usersession.h"
 
-class MainWindow : public QWidget
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
@@ -18,13 +19,17 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    ImgDiagramWidget IDW;
-    UserSession_ExprToImgWidget US_ETIW;
+    QScopedPointer<UserSession> user_session;
 
-    void CreateLayout();
+    void CreateDocks();
 
-    DataBase        *db;
-    QSqlTableModel  *model;
+    void CreateMenus();
+
+    void CreateConnections();
+
+    void CreateActions();
+
+    QScopedPointer<QAction> start_usersession;
 };
 
 #endif // MAINWINDOW_H
